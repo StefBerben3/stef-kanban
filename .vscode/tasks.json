@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start front-end",
+      "type": "npm",
+      "options": {
+        "cwd": "${workspaceFolder}/kanban-frontend"
+      },
+      "script": "start"
+    },
+    {
+      "label": "Start back-end",
+      "type": "npm",
+      "options": {
+        "cwd": "${workspaceFolder}/kanban-backend"
+      },
+      "script": "start:dev",
+      "problemMatcher": ["$tsc-watch"],
+      "isBackground": true
+    }
+  ]
+}

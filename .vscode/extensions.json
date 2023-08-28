@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "redhat.vscode-yaml",
+        "bradlc.vscode-tailwindcss",
+        "prisma.prisma",
+        "yoavbls.pretty-ts-errors",
+        "esbenp.prettier-vscode",
+        "christian-kohler.path-intellisense",
+        "christian-kohler.npm-intellisense",
+        "dbaeumer.vscode-eslint",
+        "editorconfig.editorconfig"
+    ]
+}
