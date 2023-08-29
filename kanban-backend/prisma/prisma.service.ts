@@ -11,6 +11,4 @@ export class PrismaService {
     this.client = new PrismaClient();
     this.card = this.client.card;
   }
-
-
 }

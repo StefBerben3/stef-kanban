@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { Card } from './dto/card';
 
 @Injectable()
 export class AppService {
@@ -9,53 +10,45 @@ export class AppService {
   }
 
   async getLanes(): Promise<any> {
-    return  this.prisma.client.lane.findMany();
+    return this.prisma.client.lane.findMany();
   }
 
-  async getCardsForLane(laneId: string): Promise<any> {
-    const cards = await this.prisma.client.card.findMany({
+  async getCardsForLane(laneId: string): Promise<Card[]> {
+    return await this.prisma.client.card.findMany({
       where: {
         laneId: laneId,
       },
     });
-
-    return cards;
   }
 
- async createCard(cardData: any): Promise<any> {
-    const createdCard = await this.prisma.card.create({
+  async createCard(cardData: Card): Promise<Card> {
+    return await this.prisma.card.create({
       data: {
-        taskName: cardData.name,
         laneId: cardData.laneId,
-        taskDescription: cardData.description,
-        taskPriority: cardData.priority,
-        taskassignee: cardData.assignee,
+        taskName: cardData.taskName,
+        taskDescription: cardData.taskDescription,
+        taskPriority: cardData.taskPriority,
+        taskAssignee: cardData.taskAssignee,
       },
     });
-
-    return createdCard;
   }
 
-  async updateCard(id: string, updatedCard: any): Promise<any> {
-
+  async updateCard(id: string, updatedCard: Card): Promise<Card> {
     return this.prisma.card.update({
       where: { id: id },
       data: {
-        taskName: updatedCard.name,
+        taskName: updatedCard.taskName,
         laneId: updatedCard.laneId,
-        taskDescription: updatedCard.description,
-        taskPriority: updatedCard.priority,
-        taskAssignee: updatedCard.assignee,
+        taskDescription: updatedCard.taskDescription,
+        taskPriority: updatedCard.taskPriority,
+        taskAssignee: updatedCard.taskAssignee,
       },
     });
   }
-  
 
-  async deleteCard(id: string): Promise<any> {
+  async deleteCard(id: string): Promise<Card> {
     return this.prisma.card.delete({
       where: { id: id },
     });
   }
-
-
 }
