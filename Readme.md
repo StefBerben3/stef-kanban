@@ -1,16 +1,19 @@
 # Kanban board stef
 
-- [] Prisma opzetten
-- [] Wireframes welke pagina's
-- [] Document met api endpoints
-- [] Database schema (https://diagramplus.com/)
+- [x] Prisma opzetten
+- [x] Wireframes welke pagina's
+- [x] Document met api endpoints
+- [x] Database schema (https://diagramplus.com/)
 
 ### Vereisten
 
-- [] Lanes op basis van api
-- [] Cards op basis van api
-- [] socket updates
+- [x] Lanes op basis van api
+- [x] Cards op basis van api
 - [] OpenApi gebruiken (Orval generator)
+- [] Components maken in React
+- [] TailwindCSS stijlen
+- [] Integratie met de api
+- [] Sockets
 
 ### Documentaties
 
