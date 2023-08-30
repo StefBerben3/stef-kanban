@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Param, Post, Put } from '@nestjs/common';
 import { Card } from 'src/dto/card';
 
-Controller();
+@Controller()
 export class CardController {
   CardService: any;
   appService: any;
