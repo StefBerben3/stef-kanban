@@ -1,6 +1,6 @@
 # Kanban board stef
 
-- [x] Prisma opzetten
+- [x] Prisma opzetten (https://docs.nestjs.com/recipes/prisma#set-up-prisma)
 - [x] Wireframes welke pagina's
 - [x] Document met api endpoints
 - [x] Database schema (https://diagramplus.com/)
@@ -9,21 +9,14 @@
 
 - [x] Lanes op basis van api
 - [x] Cards op basis van api
-- [] OpenApi gebruiken (Orval generator)
-- [] Components maken in React
-- [] TailwindCSS stijlen
-- [] Integratie met de api
-- [] Sockets
+- [ ] OpenApi gebruiken (Orval generator) (https://docs.nestjs.com/openapi/introduction) (https://orval.dev/)
+- [ ] Components maken in React (https://react.dev/)
+- [ ] TailwindCSS stijlen (https://tailwindcss.com/)
+- [ ] Integratie met de api
+- [ ] Sockets (https://docs.nestjs.com/websockets/gateways)
 
 ### Documentaties
-
-https://tailwindcss.com/
-https://react.dev/
 https://docs.nestjs.com/
-https://docs.nestjs.com/recipes/prisma#set-up-prisma
-https://docs.nestjs.com/websockets/gateways
-https://docs.nestjs.com/openapi/introduction
-https://orval.dev/
 
 ```
 GET /api/lanes
