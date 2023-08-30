@@ -4,17 +4,17 @@ import { CardRepository } from './card.repository';
 
 @Injectable()
 export class CardService {
-  constructor(private readonly repository: CardRepository) {}
+  constructor(private readonly cardRepository: CardRepository) {}
 
   createCard(cardData: Card): Promise<Card> {
-    return this.repository.createCard(cardData);
+    return this.cardRepository.createCard(cardData);
   }
 
   updateCard(id: string, updatedCard: Card): Promise<Card> {
-    return this.repository.updateCard(id, updatedCard);
+    return this.cardRepository.updateCard(id, updatedCard);
   }
 
   deleteCard(id: string): Promise<Card> {
-    return this.repository.deleteCard(id);
+    return this.cardRepository.deleteCard(id);
   }
 }

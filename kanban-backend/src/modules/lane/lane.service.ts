@@ -5,13 +5,13 @@ import { LaneRepository } from './lane.repository';
 
 @Injectable()
 export class LaneService {
-  constructor(private readonly repository: LaneRepository) {}
+  constructor(private readonly laneRepository: LaneRepository) {}
 
   getLanes(): Promise<Lane[]> {
-    return this.repository.getLanes();
+    return this.laneRepository.getLanes();
   }
 
   getCardsForLane(laneId: string): Promise<Card[]> {
-    return this.repository.getCardsForLane(laneId);
+    return this.laneRepository.getCardsForLane(laneId);
   }
 }

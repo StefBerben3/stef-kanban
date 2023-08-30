@@ -5,15 +5,15 @@ import { LaneService } from './lane.service';
 
 @Controller()
 export class LaneController {
-  constructor(private readonly service: LaneService) {}
+  constructor(private readonly laneService: LaneService) {}
 
   @Get('/api/lanes')
   getLanes(): Promise<Lane[]> {
-    return this.service.getLanes();
+    return this.laneService.getLanes();
   }
 
   @Get('/api/lanes/:id/cards')
   getCardsForLane(@Param('id') laneId: string): Promise<Card[]> {
-    return this.service.getCardsForLane(laneId);
+    return this.laneService.getCardsForLane(laneId);
   }
 }

@@ -4,7 +4,5 @@ import { laneModule } from './modules/lane/lane.module';
 
 @Module({
   imports: [CardModule, laneModule],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
