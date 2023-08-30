@@ -15,13 +15,8 @@ import { Lane } from './dto/lane';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-
   @Get('/api/lanes')
-  async getLanes(): Promise<Lane> {
+  getLanes(): Promise<Lane[]> {
     return this.appService.getLanes();
   }
 
@@ -40,7 +35,7 @@ export class AppController {
   }
 
   @Put('/api/cards/:id')
-  async updateCard(
+  updateCard(
     @Param('id') id: string,
     @Body() updatedCard: Card,
   ): Promise<Card> {
@@ -48,7 +43,7 @@ export class AppController {
   }
 
   @Delete('/api/cards/:id')
-  async deleteCard(@Param('id') id: string): Promise<Card> {
+  deleteCard(@Param('id') id: string): Promise<Card> {
     return this.appService.deleteCard(id);
   }
 }

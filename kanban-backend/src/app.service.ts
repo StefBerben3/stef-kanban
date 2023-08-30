@@ -1,54 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
+import { AppRepository } from '../src/app.repository';
 import { Card } from './dto/card';
+import { Lane } from './dto/lane';
 
 @Injectable()
 export class AppService {
-  constructor(private readonly prisma: PrismaService) {}
-  getHello(): string {
-    return 'Hello World!';
+  constructor(private readonly repository: AppRepository) {}
+
+  getLanes(): Promise<Lane[]> {
+    return this.repository.getLanes();
   }
 
-  async getLanes(): Promise<any> {
-    return this.prisma.client.lane.findMany();
+  getCardsForLane(laneId: string): Promise<Card[]> {
+    return this.repository.getCardsForLane(laneId);
   }
 
-  async getCardsForLane(laneId: string): Promise<Card[]> {
-    return await this.prisma.client.card.findMany({
-      where: {
-        laneId: laneId,
-      },
-    });
+  createCard(cardData: Card): Promise<Card> {
+    return this.repository.createCard(cardData);
   }
 
-  async createCard(cardData: Card): Promise<Card> {
-    return await this.prisma.card.create({
-      data: {
-        laneId: cardData.laneId,
-        taskName: cardData.taskName,
-        taskDescription: cardData.taskDescription,
-        taskPriority: cardData.taskPriority,
-        taskAssignee: cardData.taskAssignee,
-      },
-    });
+  updateCard(id: string, updatedCard: Card): Promise<Card> {
+    return this.repository.updateCard(id, updatedCard);
   }
 
-  async updateCard(id: string, updatedCard: Card): Promise<Card> {
-    return this.prisma.card.update({
-      where: { id: id },
-      data: {
-        taskName: updatedCard.taskName,
-        laneId: updatedCard.laneId,
-        taskDescription: updatedCard.taskDescription,
-        taskPriority: updatedCard.taskPriority,
-        taskAssignee: updatedCard.taskAssignee,
-      },
-    });
-  }
-
-  async deleteCard(id: string): Promise<Card> {
-    return this.prisma.card.delete({
-      where: { id: id },
-    });
+  deleteCard(id: string): Promise<Card> {
+    return this.repository.deleteCard(id);
   }
 }
