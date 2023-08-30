@@ -8,4 +8,4 @@ import { LaneService } from './lane.service';
   controllers: [LaneController],
   providers: [PrismaService, LaneService, LaneRepository],
 })
-export class laneModule {}
+export class LaneModule {}
