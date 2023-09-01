@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import "./App.css";
 import { useLaneControllerGetLanes } from "./api/endpoints/kanban";
-import { MemoKanBanLane } from "./components/lane/lane";
+import { MemoKanBanLane } from "./components/lane";
 /*import KanbanLane from "./components/lane/lane";*/
 
 function App() {

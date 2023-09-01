@@ -4,8 +4,8 @@ import {
   useLaneControllerGetCardsForLane,
 } from "../../api/endpoints/kanban";
 import { Card, CardUpdate } from "../../api/model";
-import Button from "../button/button";
-import CardForm from "../form/cardForm";
+import Button from "../button";
+import CardForm from "../cardForm";
 
 export default function KanbanModel({
   card: initialCard,

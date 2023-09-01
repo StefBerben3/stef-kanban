@@ -2,10 +2,10 @@ import { useState } from "react";
 import {
   cardControllerDeleteCard,
   useLaneControllerGetCardsForLane,
-} from "../../api/endpoints/kanban";
-import { Card } from "../../api/model";
-import Button from "../button/button";
-import KanbanModel from "../model/modelUpdate";
+} from "../api/endpoints/kanban";
+import { Card } from "../api/model";
+import Button from "./button";
+import KanbanModel from "./model/modelUpdate";
 
 export default function KanbanCard({ card }: { card: Card }) {
   const { refetch } = useLaneControllerGetCardsForLane(card.laneId);

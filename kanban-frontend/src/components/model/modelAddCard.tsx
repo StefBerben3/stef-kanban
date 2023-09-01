@@ -3,8 +3,8 @@ import {
   cardControllerCreateCard,
   useLaneControllerGetCardsForLane,
 } from "../../api/endpoints/kanban";
-import Button from "../button/button";
-import CardForm from "../form/cardForm";
+import Button from "../button";
+import CardForm from "../cardForm";
 
 export default function KanbanAddModel({
   laneId,

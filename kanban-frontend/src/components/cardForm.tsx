@@ -1,4 +1,4 @@
-import { CardUpdate } from "../../api/model";
+import { CardUpdate } from "../api/model";
 
 export default function CardForm({
   data,
