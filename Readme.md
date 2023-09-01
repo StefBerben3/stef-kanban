@@ -9,10 +9,10 @@
 
 - [x] Lanes op basis van api
 - [x] Cards op basis van api
-- [] OpenApi gebruiken (Orval generator)
-- [] Components maken in React
-- [] TailwindCSS stijlen
-- [] Integratie met de api
+- [x] OpenApi gebruiken (Orval generator)
+- [x] Components maken in React
+- [x] TailwindCSS stijlen
+- [x] Integratie met de api
 - [] Sockets
 
 ### Documentaties
