@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { card } from '@prisma/client';
 import { PrismaService } from 'prisma/prisma.service';
-import { Card } from 'src/dto/card';
+import { CardUpdate } from 'src/dto/card';
 
 @Injectable()
 export class CardRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  createCard(cardData: Card): Promise<card> {
+  createCard(cardData: CardUpdate): Promise<card> {
     return this.prisma.card.create({
       data: {
         laneId: cardData.laneId,
@@ -19,7 +19,7 @@ export class CardRepository {
     });
   }
 
-  updateCard(id: string, updatedCard: Card): Promise<card> {
+  updateCard(id: string, updatedCard: CardUpdate): Promise<card> {
     return this.prisma.card.update({
       where: { id: id },
       data: {
