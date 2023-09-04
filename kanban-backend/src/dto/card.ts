@@ -8,8 +8,6 @@ export class CardUpdate {
   @ApiProperty()
   taskDescription: string;
   @ApiProperty()
-  taskAssignee: string;
-  @ApiProperty()
   taskPriority: number;
 }
 

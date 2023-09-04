@@ -20,7 +20,6 @@ export default function KanbanAddModel({
     laneId,
     taskDescription: "",
     taskPriority: 0,
-    taskAssignee: "",
   });
   const { refetch } = useLaneControllerGetCardsForLane(card.laneId);
   const createCard = () => {

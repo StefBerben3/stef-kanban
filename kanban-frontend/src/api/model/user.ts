@@ -6,9 +6,8 @@
  * OpenAPI spec version: 1.0
  */
 
-export interface CardUpdate {
-  taskName: string;
-  laneId: string;
-  taskDescription: string;
-  taskPriority: number;
+export interface User {
+  id: string;
+  name: string;
+  lastname: string;
 }

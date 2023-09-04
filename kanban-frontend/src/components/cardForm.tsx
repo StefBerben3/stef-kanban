@@ -1,4 +1,24 @@
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { Fragment, useState } from "react";
 import { CardUpdate } from "../api/model";
+
+const people = [
+  { id: 1, name: "Wade Cooper" },
+  { id: 2, name: "Arlene Mccoy" },
+  { id: 3, name: "Devon Webb" },
+  { id: 4, name: "Tom Cock" },
+  { id: 5, name: "Tanya Fox" },
+  { id: 6, name: "Hellen Schmidt" },
+  { id: 7, name: "Caroline Schultz" },
+  { id: 8, name: "Mason Heaney" },
+  { id: 9, name: "Claudie Smitham" },
+  { id: 10, name: "Emil Schaefer" },
+];
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export default function CardForm({
   data,
@@ -7,75 +27,138 @@ export default function CardForm({
   data: CardUpdate;
   onChange: (card: CardUpdate) => void;
 }) {
+  const [selected, setSelected] = useState(people[3]);
+
   return (
     <>
-      <div className="mb-4">
-        <label
-          htmlFor="taskName"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Task Name
-        </label>
-        <input
-          type="text"
-          id="taskName"
-          className="mt-1 p-2 w-full border rounded-md"
-          placeholder="Enter task name"
-          value={data.taskName}
-          onChange={(e) => onChange({ ...data, taskName: e.target.value })}
-        />
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="description"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Description
-        </label>
-        <textarea
-          id="description"
-          className="mt-1 p-2 w-full border rounded-md"
-          placeholder="Enter task description"
-          value={data.taskDescription}
-          onChange={(e) =>
-            onChange({ ...data, taskDescription: e.target.value })
-          }
-        ></textarea>
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="priority"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Priority
-        </label>
-        <input
-          type="number"
-          id="priority"
-          className="mt-1 p-2 w-full border rounded-md"
-          placeholder="Enter priority"
-          value={data.taskPriority}
-          onChange={(e) =>
-            onChange({ ...data, taskPriority: parseInt(e.target.value) })
-          }
-        />
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="assignee"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Assignee
-        </label>
-        <input
-          type="text"
-          id="assignee"
-          className="mt-1 p-2 w-full border rounded-md"
-          placeholder="Enter assignee"
-          value={data.taskAssignee}
-          onChange={(e) => onChange({ ...data, taskAssignee: e.target.value })}
-        />
-      </div>
+      <>
+        <div className="mb-4">
+          {" "}
+          <label htmlFor="taskName">Task Name </label>
+          <input
+            id="taskName"
+            className="mt-1 p-2 w-full border rounded-md"
+            placeholder="Enter task name"
+            value={data.taskName}
+            onChange={(e) => onChange({ ...data, taskName: e.target.value })}
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            htmlFor="description"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Description
+          </label>
+          <textarea
+            id="description"
+            className="mt-1 p-2 w-full border rounded-md"
+            placeholder="Enter task description"
+            value={data.taskDescription}
+            onChange={(e) =>
+              onChange({ ...data, taskDescription: e.target.value })
+            }
+          ></textarea>
+        </div>
+        <div className="mb-4">
+          <label
+            htmlFor="priority"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Priority
+          </label>
+          <input
+            type="number"
+            id="priority"
+            className="mt-1 p-2 w-full border rounded-md"
+            placeholder="Enter priority"
+            value={data.taskPriority}
+            onChange={(e) =>
+              onChange({ ...data, taskPriority: parseInt(e.target.value) })
+            }
+          />
+        </div>
+        <div className="mb-4">
+          <Listbox value={selected} onChange={setSelected}>
+            {({ open }: { open: boolean }) => (
+              <>
+                <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">
+                  Assigned to
+                </Listbox.Label>
+                <div className="relative mt-2">
+                  <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <span className="block truncate">{selected.name}</span>
+                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                      <ChevronUpDownIcon
+                        className="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </Listbox.Button>
+
+                  <Transition
+                    show={open}
+                    as={Fragment}
+                    leave="transition ease-in duration-100"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                      {people.map((person) => (
+                        <Listbox.Option
+                          key={person.id}
+                          className={({ active }: { active: boolean }) =>
+                            classNames(
+                              active
+                                ? "bg-indigo-600 text-white"
+                                : "text-gray-900",
+                              "relative cursor-default select-none py-2 pl-8 pr-4"
+                            )
+                          }
+                          value={person}
+                        >
+                          {({
+                            selected,
+                            active,
+                          }: {
+                            selected: boolean;
+                            active: boolean;
+                          }) => (
+                            <>
+                              <span
+                                className={classNames(
+                                  selected ? "font-semibold" : "font-normal",
+                                  "block truncate"
+                                )}
+                              >
+                                {person.name}
+                              </span>
+
+                              {selected ? (
+                                <span
+                                  className={classNames(
+                                    active ? "text-white" : "text-indigo-600",
+                                    "absolute inset-y-0 left-0 flex items-center pl-1.5"
+                                  )}
+                                >
+                                  <CheckIcon
+                                    className="h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                </span>
+                              ) : null}
+                            </>
+                          )}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </Transition>
+                </div>
+              </>
+            )}
+          </Listbox>
+        </div>
+      </>
     </>
   );
 }

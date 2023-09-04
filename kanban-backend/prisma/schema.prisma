@@ -13,11 +13,12 @@ datasource db {
 model card {
   id              String   @id @default(uuid())
   lane            lane     @relation(fields: [laneId], references: [id])
+  user            user?    @relation(fields: [userId], references: [id])
+  userId          String?
   laneId          String
   taskName        String
   taskDescription String
   taskPriority    Int
-  taskAssignee    String
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
@@ -28,4 +29,11 @@ model lane {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   card      card[]
+}
+
+model user {
+  id            String @id @default(uuid())
+  name          String
+  lastname      String
+  assignedCards card[]
 }

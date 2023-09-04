@@ -5,329 +5,353 @@
  * Een mooie beschrijving
  * OpenAPI spec version: 1.0
  */
+import {
+  useQuery,
+  useMutation
+} from '@tanstack/react-query'
 import type {
-  MutationFunction,
-  QueryFunction,
-  QueryKey,
-  UseMutationOptions,
   UseQueryOptions,
+  UseMutationOptions,
+  QueryFunction,
+  MutationFunction,
   UseQueryResult,
-} from "@tanstack/react-query";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import type { Card, CardUpdate, Lane } from "../model";
-import type { ErrorType } from "../mutator/custom-instance";
-import { customInstance } from "../mutator/custom-instance";
+  QueryKey
+} from '@tanstack/react-query'
+import type {
+  Card,
+  CardUpdate,
+  Lane,
+  User
+} from '../model'
+import { customInstance } from '../mutator/custom-instance';
+import type { ErrorType } from '../mutator/custom-instance';
 
-export const cardControllerCreateCard = (cardUpdate: CardUpdate) => {
-  return customInstance<Card>({
-    url: `/api/cards`,
-    method: "post",
-    headers: { "Content-Type": "application/json" },
-    data: cardUpdate,
-  });
-};
 
-export const getCardControllerCreateCardMutationOptions = <
-  TError = ErrorType<unknown>,
-  TContext = unknown
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof cardControllerCreateCard>>,
-    TError,
-    { data: CardUpdate },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof cardControllerCreateCard>>,
-  TError,
-  { data: CardUpdate },
-  TContext
-> => {
-  const { mutation: mutationOptions } = options ?? {};
+export const cardControllerCreateCard = (
+    cardUpdate: CardUpdate,
+ ) => {
+      return customInstance<Card>(
+      {url: `/api/cards`, method: 'post',
+      headers: {'Content-Type': 'application/json', },
+      data: cardUpdate
+    },
+      );
+    }
+  
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof cardControllerCreateCard>>,
-    { data: CardUpdate }
-  > = (props) => {
-    const { data } = props ?? {};
 
-    return cardControllerCreateCard(data);
-  };
+export const getCardControllerCreateCardMutationOptions = <TError = ErrorType<unknown>,
+    
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cardControllerCreateCard>>, TError,{data: CardUpdate}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof cardControllerCreateCard>>, TError,{data: CardUpdate}, TContext> => {
+ const {mutation: mutationOptions} = options ?? {};
 
-  return { mutationFn, ...mutationOptions };
-};
+      
 
-export type CardControllerCreateCardMutationResult = NonNullable<
-  Awaited<ReturnType<typeof cardControllerCreateCard>>
->;
-export type CardControllerCreateCardMutationBody = CardUpdate;
-export type CardControllerCreateCardMutationError = ErrorType<unknown>;
 
-export const useCardControllerCreateCard = <
-  TError = ErrorType<unknown>,
-  TContext = unknown
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof cardControllerCreateCard>>,
-    TError,
-    { data: CardUpdate },
-    TContext
-  >;
-}) => {
-  const mutationOptions = getCardControllerCreateCardMutationOptions(options);
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof cardControllerCreateCard>>, {data: CardUpdate}> = (props) => {
+          const {data} = props ?? {};
 
-  return useMutation(mutationOptions);
-};
+          return  cardControllerCreateCard(data,)
+        }
 
-export const cardControllerUpdateCard = (
-  id: string,
-  cardUpdate: CardUpdate
+        
+
+ 
+   return  { mutationFn, ...mutationOptions }}
+
+    export type CardControllerCreateCardMutationResult = NonNullable<Awaited<ReturnType<typeof cardControllerCreateCard>>>
+    export type CardControllerCreateCardMutationBody = CardUpdate
+    export type CardControllerCreateCardMutationError = ErrorType<unknown>
+
+    export const useCardControllerCreateCard = <TError = ErrorType<unknown>,
+    
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cardControllerCreateCard>>, TError,{data: CardUpdate}, TContext>, }
 ) => {
-  return customInstance<Card>({
-    url: `/api/cards/${id}`,
-    method: "put",
-    headers: { "Content-Type": "application/json" },
-    data: cardUpdate,
-  });
-};
+    
+      const mutationOptions = getCardControllerCreateCardMutationOptions(options);
+     
+      return useMutation(mutationOptions);
+    }
+    
+export const cardControllerUpdateCard = (
+    id: string,
+    cardUpdate: CardUpdate,
+ ) => {
+      return customInstance<Card>(
+      {url: `/api/cards/${id}`, method: 'put',
+      headers: {'Content-Type': 'application/json', },
+      data: cardUpdate
+    },
+      );
+    }
+  
 
-export const getCardControllerUpdateCardMutationOptions = <
-  TError = ErrorType<unknown>,
-  TContext = unknown
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof cardControllerUpdateCard>>,
-    TError,
-    { id: string; data: CardUpdate },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof cardControllerUpdateCard>>,
-  TError,
-  { id: string; data: CardUpdate },
-  TContext
-> => {
-  const { mutation: mutationOptions } = options ?? {};
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof cardControllerUpdateCard>>,
-    { id: string; data: CardUpdate }
-  > = (props) => {
-    const { id, data } = props ?? {};
+export const getCardControllerUpdateCardMutationOptions = <TError = ErrorType<unknown>,
+    
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cardControllerUpdateCard>>, TError,{id: string;data: CardUpdate}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof cardControllerUpdateCard>>, TError,{id: string;data: CardUpdate}, TContext> => {
+ const {mutation: mutationOptions} = options ?? {};
 
-    return cardControllerUpdateCard(id, data);
-  };
+      
 
-  return { mutationFn, ...mutationOptions };
-};
 
-export type CardControllerUpdateCardMutationResult = NonNullable<
-  Awaited<ReturnType<typeof cardControllerUpdateCard>>
->;
-export type CardControllerUpdateCardMutationBody = CardUpdate;
-export type CardControllerUpdateCardMutationError = ErrorType<unknown>;
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof cardControllerUpdateCard>>, {id: string;data: CardUpdate}> = (props) => {
+          const {id,data} = props ?? {};
 
-export const useCardControllerUpdateCard = <
-  TError = ErrorType<unknown>,
-  TContext = unknown
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof cardControllerUpdateCard>>,
-    TError,
-    { id: string; data: CardUpdate },
-    TContext
-  >;
-}) => {
-  const mutationOptions = getCardControllerUpdateCardMutationOptions(options);
+          return  cardControllerUpdateCard(id,data,)
+        }
 
-  return useMutation(mutationOptions);
-};
+        
 
-export const cardControllerDeleteCard = (id: string) => {
-  return customInstance<void>({ url: `/api/cards/${id}`, method: "delete" });
-};
+ 
+   return  { mutationFn, ...mutationOptions }}
 
-export const getCardControllerDeleteCardMutationOptions = <
-  TError = ErrorType<unknown>,
-  TContext = unknown
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof cardControllerDeleteCard>>,
-    TError,
-    { id: string },
-    TContext
-  >;
-}): UseMutationOptions<
-  Awaited<ReturnType<typeof cardControllerDeleteCard>>,
-  TError,
-  { id: string },
-  TContext
-> => {
-  const { mutation: mutationOptions } = options ?? {};
+    export type CardControllerUpdateCardMutationResult = NonNullable<Awaited<ReturnType<typeof cardControllerUpdateCard>>>
+    export type CardControllerUpdateCardMutationBody = CardUpdate
+    export type CardControllerUpdateCardMutationError = ErrorType<unknown>
 
-  const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof cardControllerDeleteCard>>,
-    { id: string }
-  > = (props) => {
-    const { id } = props ?? {};
+    export const useCardControllerUpdateCard = <TError = ErrorType<unknown>,
+    
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cardControllerUpdateCard>>, TError,{id: string;data: CardUpdate}, TContext>, }
+) => {
+    
+      const mutationOptions = getCardControllerUpdateCardMutationOptions(options);
+     
+      return useMutation(mutationOptions);
+    }
+    
+export const cardControllerDeleteCard = (
+    id: string,
+ ) => {
+      return customInstance<void>(
+      {url: `/api/cards/${id}`, method: 'delete'
+    },
+      );
+    }
+  
 
-    return cardControllerDeleteCard(id);
-  };
 
-  return { mutationFn, ...mutationOptions };
-};
+export const getCardControllerDeleteCardMutationOptions = <TError = ErrorType<unknown>,
+    
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cardControllerDeleteCard>>, TError,{id: string}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof cardControllerDeleteCard>>, TError,{id: string}, TContext> => {
+ const {mutation: mutationOptions} = options ?? {};
 
-export type CardControllerDeleteCardMutationResult = NonNullable<
-  Awaited<ReturnType<typeof cardControllerDeleteCard>>
->;
+      
 
-export type CardControllerDeleteCardMutationError = ErrorType<unknown>;
 
-export const useCardControllerDeleteCard = <
-  TError = ErrorType<unknown>,
-  TContext = unknown
->(options?: {
-  mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof cardControllerDeleteCard>>,
-    TError,
-    { id: string },
-    TContext
-  >;
-}) => {
-  const mutationOptions = getCardControllerDeleteCardMutationOptions(options);
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof cardControllerDeleteCard>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
 
-  return useMutation(mutationOptions);
-};
+          return  cardControllerDeleteCard(id,)
+        }
 
-export const laneControllerGetLanes = (signal?: AbortSignal) => {
-  return customInstance<Lane[]>({ url: `/api/lanes`, method: "get", signal });
-};
+        
+
+ 
+   return  { mutationFn, ...mutationOptions }}
+
+    export type CardControllerDeleteCardMutationResult = NonNullable<Awaited<ReturnType<typeof cardControllerDeleteCard>>>
+    
+    export type CardControllerDeleteCardMutationError = ErrorType<unknown>
+
+    export const useCardControllerDeleteCard = <TError = ErrorType<unknown>,
+    
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cardControllerDeleteCard>>, TError,{id: string}, TContext>, }
+) => {
+    
+      const mutationOptions = getCardControllerDeleteCardMutationOptions(options);
+     
+      return useMutation(mutationOptions);
+    }
+    
+export const laneControllerGetLanes = (
+    
+ signal?: AbortSignal
+) => {
+      return customInstance<Lane[]>(
+      {url: `/api/lanes`, method: 'get', signal
+    },
+      );
+    }
+  
 
 export const getLaneControllerGetLanesQueryKey = () => [`/api/lanes`] as const;
+  
 
-export const getLaneControllerGetLanesQueryOptions = <
-  TData = Awaited<ReturnType<typeof laneControllerGetLanes>>,
-  TError = ErrorType<unknown>
->(options?: {
-  query?: UseQueryOptions<
-    Awaited<ReturnType<typeof laneControllerGetLanes>>,
-    TError,
-    TData
-  >;
-}): UseQueryOptions<
-  Awaited<ReturnType<typeof laneControllerGetLanes>>,
-  TError,
-  TData
-> & { queryKey: QueryKey } => {
-  const { query: queryOptions } = options ?? {};
+    
+export const getLaneControllerGetLanesQueryOptions = <TData = Awaited<ReturnType<typeof laneControllerGetLanes>>, TError = ErrorType<unknown>>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof laneControllerGetLanes>>, TError, TData>, }
+): UseQueryOptions<Awaited<ReturnType<typeof laneControllerGetLanes>>, TError, TData> & { queryKey: QueryKey } => {
+const {query: queryOptions} = options ?? {};
 
-  const queryKey =
-    queryOptions?.queryKey ?? getLaneControllerGetLanesQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getLaneControllerGetLanesQueryKey();
 
-  const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof laneControllerGetLanes>>
-  > = ({ signal }) => laneControllerGetLanes(signal);
+  
+  
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof laneControllerGetLanes>>> = ({ signal }) => laneControllerGetLanes(signal);
+    
+      
+      
+   return  { queryKey, queryFn, ...queryOptions}}
 
-  return { queryKey, queryFn, ...queryOptions };
-};
+export type LaneControllerGetLanesQueryResult = NonNullable<Awaited<ReturnType<typeof laneControllerGetLanes>>>
+export type LaneControllerGetLanesQueryError = ErrorType<unknown>
 
-export type LaneControllerGetLanesQueryResult = NonNullable<
-  Awaited<ReturnType<typeof laneControllerGetLanes>>
->;
-export type LaneControllerGetLanesQueryError = ErrorType<unknown>;
+export const useLaneControllerGetLanes = <TData = Awaited<ReturnType<typeof laneControllerGetLanes>>, TError = ErrorType<unknown>>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof laneControllerGetLanes>>, TError, TData>, }
 
-export const useLaneControllerGetLanes = <
-  TData = Awaited<ReturnType<typeof laneControllerGetLanes>>,
-  TError = ErrorType<unknown>
->(options?: {
-  query?: UseQueryOptions<
-    Awaited<ReturnType<typeof laneControllerGetLanes>>,
-    TError,
-    TData
-  >;
-}): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getLaneControllerGetLanesQueryOptions(options);
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
-    queryKey: QueryKey;
-  };
+  const queryOptions = getLaneControllerGetLanesQueryOptions(options)
 
-  query.queryKey = queryOptions.queryKey;
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
 
   return query;
-};
+}
+
 
 export const laneControllerGetCardsForLane = (
-  id: string,
-  signal?: AbortSignal
+    id: string,
+ signal?: AbortSignal
 ) => {
-  return customInstance<Card[]>({
-    url: `/api/lanes/${id}/cards`,
-    method: "get",
-    signal,
-  });
-};
+      return customInstance<Card[]>(
+      {url: `/api/lanes/${id}/cards`, method: 'get', signal
+    },
+      );
+    }
+  
 
-export const getLaneControllerGetCardsForLaneQueryKey = (id: string) =>
-  [`/api/lanes/${id}/cards`] as const;
+export const getLaneControllerGetCardsForLaneQueryKey = (id: string,) => [`/api/lanes/${id}/cards`] as const;
+  
 
-export const getLaneControllerGetCardsForLaneQueryOptions = <
-  TData = Awaited<ReturnType<typeof laneControllerGetCardsForLane>>,
-  TError = ErrorType<unknown>
->(
-  id: string,
-  options?: {
-    query?: UseQueryOptions<
-      Awaited<ReturnType<typeof laneControllerGetCardsForLane>>,
-      TError,
-      TData
-    >;
-  }
-): UseQueryOptions<
-  Awaited<ReturnType<typeof laneControllerGetCardsForLane>>,
-  TError,
-  TData
-> & { queryKey: QueryKey } => {
-  const { query: queryOptions } = options ?? {};
+    
+export const getLaneControllerGetCardsForLaneQueryOptions = <TData = Awaited<ReturnType<typeof laneControllerGetCardsForLane>>, TError = ErrorType<unknown>>(id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof laneControllerGetCardsForLane>>, TError, TData>, }
+): UseQueryOptions<Awaited<ReturnType<typeof laneControllerGetCardsForLane>>, TError, TData> & { queryKey: QueryKey } => {
+const {query: queryOptions} = options ?? {};
 
-  const queryKey =
-    queryOptions?.queryKey ?? getLaneControllerGetCardsForLaneQueryKey(id);
+  const queryKey =  queryOptions?.queryKey ?? getLaneControllerGetCardsForLaneQueryKey(id);
 
-  const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof laneControllerGetCardsForLane>>
-  > = ({ signal }) => laneControllerGetCardsForLane(id, signal);
+  
+  
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof laneControllerGetCardsForLane>>> = ({ signal }) => laneControllerGetCardsForLane(id, signal);
+    
+      
+      
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions}}
 
-  return { queryKey, queryFn, enabled: !!id, ...queryOptions };
-};
+export type LaneControllerGetCardsForLaneQueryResult = NonNullable<Awaited<ReturnType<typeof laneControllerGetCardsForLane>>>
+export type LaneControllerGetCardsForLaneQueryError = ErrorType<unknown>
 
-export type LaneControllerGetCardsForLaneQueryResult = NonNullable<
-  Awaited<ReturnType<typeof laneControllerGetCardsForLane>>
->;
-export type LaneControllerGetCardsForLaneQueryError = ErrorType<unknown>;
+export const useLaneControllerGetCardsForLane = <TData = Awaited<ReturnType<typeof laneControllerGetCardsForLane>>, TError = ErrorType<unknown>>(
+ id: string, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof laneControllerGetCardsForLane>>, TError, TData>, }
 
-export const useLaneControllerGetCardsForLane = <
-  TData = Awaited<ReturnType<typeof laneControllerGetCardsForLane>>,
-  TError = ErrorType<unknown>
->(
-  id: string,
-  options?: {
-    query?: UseQueryOptions<
-      Awaited<ReturnType<typeof laneControllerGetCardsForLane>>,
-      TError,
-      TData
-    >;
-  }
-): UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
-  const queryOptions = getLaneControllerGetCardsForLaneQueryOptions(
-    id,
-    options
-  );
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
-  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
-    queryKey: QueryKey;
-  };
+  const queryOptions = getLaneControllerGetCardsForLaneQueryOptions(id,options)
 
-  query.queryKey = queryOptions.queryKey;
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
 
   return query;
-};
+}
+
+
+export const usercontrollerCreateUser = (
+    user: User,
+ ) => {
+      return customInstance<User>(
+      {url: `/api/user`, method: 'post',
+      headers: {'Content-Type': 'application/json', },
+      data: user
+    },
+      );
+    }
+  
+
+
+export const getUsercontrollerCreateUserMutationOptions = <TError = ErrorType<unknown>,
+    
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof usercontrollerCreateUser>>, TError,{data: User}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof usercontrollerCreateUser>>, TError,{data: User}, TContext> => {
+ const {mutation: mutationOptions} = options ?? {};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof usercontrollerCreateUser>>, {data: User}> = (props) => {
+          const {data} = props ?? {};
+
+          return  usercontrollerCreateUser(data,)
+        }
+
+        
+
+ 
+   return  { mutationFn, ...mutationOptions }}
+
+    export type UsercontrollerCreateUserMutationResult = NonNullable<Awaited<ReturnType<typeof usercontrollerCreateUser>>>
+    export type UsercontrollerCreateUserMutationBody = User
+    export type UsercontrollerCreateUserMutationError = ErrorType<unknown>
+
+    export const useUsercontrollerCreateUser = <TError = ErrorType<unknown>,
+    
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof usercontrollerCreateUser>>, TError,{data: User}, TContext>, }
+) => {
+    
+      const mutationOptions = getUsercontrollerCreateUserMutationOptions(options);
+     
+      return useMutation(mutationOptions);
+    }
+    
+export const usercontrollerGetUsers = (
+    
+ signal?: AbortSignal
+) => {
+      return customInstance<User[]>(
+      {url: `/api/getUsers`, method: 'get', signal
+    },
+      );
+    }
+  
+
+export const getUsercontrollerGetUsersQueryKey = () => [`/api/getUsers`] as const;
+  
+
+    
+export const getUsercontrollerGetUsersQueryOptions = <TData = Awaited<ReturnType<typeof usercontrollerGetUsers>>, TError = ErrorType<unknown>>( options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof usercontrollerGetUsers>>, TError, TData>, }
+): UseQueryOptions<Awaited<ReturnType<typeof usercontrollerGetUsers>>, TError, TData> & { queryKey: QueryKey } => {
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getUsercontrollerGetUsersQueryKey();
+
+  
+  
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof usercontrollerGetUsers>>> = ({ signal }) => usercontrollerGetUsers(signal);
+    
+      
+      
+   return  { queryKey, queryFn, ...queryOptions}}
+
+export type UsercontrollerGetUsersQueryResult = NonNullable<Awaited<ReturnType<typeof usercontrollerGetUsers>>>
+export type UsercontrollerGetUsersQueryError = ErrorType<unknown>
+
+export const useUsercontrollerGetUsers = <TData = Awaited<ReturnType<typeof usercontrollerGetUsers>>, TError = ErrorType<unknown>>(
+  options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof usercontrollerGetUsers>>, TError, TData>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const queryOptions = getUsercontrollerGetUsersQueryOptions(options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+

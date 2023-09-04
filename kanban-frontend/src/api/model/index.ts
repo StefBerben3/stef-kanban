@@ -9,3 +9,4 @@
 export * from './card';
 export * from './cardUpdate';
 export * from './lane';
+export * from './user';

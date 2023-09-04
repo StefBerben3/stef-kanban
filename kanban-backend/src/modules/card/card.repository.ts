@@ -14,7 +14,6 @@ export class CardRepository {
         taskName: cardData.taskName,
         taskDescription: cardData.taskDescription,
         taskPriority: cardData.taskPriority,
-        taskAssignee: cardData.taskAssignee,
       },
     });
   }
@@ -27,7 +26,6 @@ export class CardRepository {
         laneId: updatedCard.laneId,
         taskDescription: updatedCard.taskDescription,
         taskPriority: updatedCard.taskPriority,
-        taskAssignee: updatedCard.taskAssignee,
       },
     });
   }

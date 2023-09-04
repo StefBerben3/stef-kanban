@@ -52,10 +52,10 @@ export default function KanbanCard({ card }: { card: Card }) {
         htmlFor="taskAssignee"
         className="block text-sm text-md font-medium text-gray-700"
       >
-        Task Assignee: {card.taskAssignee}
+        Task Assignee: {}
       </label>
       <Button buttonType="PRIMARY" onClick={() => openModal()}>
-        Update
+        Edit
       </Button>
       <Button buttonType="DELETE" onClick={() => deleteCard()}>
         Delete
