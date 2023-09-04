@@ -1,6 +1,6 @@
 # Kanban board stef
 
-- [x] Prisma opzetten
+- [x] Prisma opzetten (https://docs.nestjs.com/recipes/prisma#set-up-prisma)
 - [x] Wireframes welke pagina's
 - [x] Document met api endpoints
 - [x] Database schema (https://diagramplus.com/)
@@ -13,17 +13,11 @@
 - [x] Components maken in React
 - [x] TailwindCSS stijlen
 - [x] Integratie met de api
-- [] Sockets
+- [ ] Sockets
+
 
 ### Documentaties
-
-https://tailwindcss.com/
-https://react.dev/
 https://docs.nestjs.com/
-https://docs.nestjs.com/recipes/prisma#set-up-prisma
-https://docs.nestjs.com/websockets/gateways
-https://docs.nestjs.com/openapi/introduction
-https://orval.dev/
 
 ```
 GET /api/lanes
