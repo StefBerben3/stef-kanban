@@ -9,11 +9,12 @@
 
 - [x] Lanes op basis van api
 - [x] Cards op basis van api
-- [ ] OpenApi gebruiken (Orval generator) (https://docs.nestjs.com/openapi/introduction) (https://orval.dev/)
-- [ ] Components maken in React (https://react.dev/)
-- [ ] TailwindCSS stijlen (https://tailwindcss.com/)
-- [ ] Integratie met de api
-- [ ] Sockets (https://docs.nestjs.com/websockets/gateways)
+- [x] OpenApi gebruiken (Orval generator)
+- [x] Components maken in React
+- [x] TailwindCSS stijlen
+- [x] Integratie met de api
+- [ ] Sockets
+
 
 ### Documentaties
 https://docs.nestjs.com/
