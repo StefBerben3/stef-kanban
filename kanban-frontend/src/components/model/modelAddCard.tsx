@@ -3,6 +3,8 @@ import {
   cardControllerCreateCard,
   useLaneControllerGetCardsForLane,
 } from "../../api/endpoints/kanban";
+
+import { CardUpdate, User } from "../../api/model";
 import Button from "../button";
 import CardForm from "../cardForm";
 
@@ -10,17 +12,21 @@ export default function KanbanAddModel({
   laneId,
   isOpen,
   onClose,
+  user,
 }: {
   laneId: string;
   isOpen: boolean;
+  user: User;
   onClose: () => void;
 }) {
-  const [card, setCard] = useState({
+  const [card, setCard] = useState<CardUpdate>({
     taskName: "",
     laneId,
     taskDescription: "",
     taskPriority: 0,
+    user: { id: null, name: null, lastname: null },
   });
+
   const { refetch } = useLaneControllerGetCardsForLane(card.laneId);
   const createCard = () => {
     try {
@@ -39,13 +45,17 @@ export default function KanbanAddModel({
     >
       <div className="bg-white p-6 rounded-lg shadow-md w-96">
         <h2 className="text-xl font-semibold mb-4">Create Task</h2>
-
         <CardForm data={card} onChange={(card) => setCard(card)} />
         <div className="flex justify-end">
           <Button onClick={() => onClose()} buttonType="CLOSE">
             Close
           </Button>
-          <Button onClick={() => createCard()} buttonType="ADD">
+          <Button
+            onClick={() => {
+              createCard();
+            }}
+            buttonType="ADD"
+          >
             Add Card
           </Button>
         </div>

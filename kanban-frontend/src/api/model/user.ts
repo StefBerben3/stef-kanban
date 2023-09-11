@@ -7,7 +7,7 @@
  */
 
 export interface User {
-  id: string;
-  name: string;
-  lastname: string;
+  id: string | null;
+  name: string | null;
+  lastname: string | null;
 }

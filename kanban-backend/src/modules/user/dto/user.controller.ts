@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiOkResponse } from '@nestjs/swagger';
-import { User } from 'src/dto/user';
+import { User } from 'src/modules/user/dto/user';
 import { UserService } from './user.service';
 
 @Controller()

@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Card } from 'src/dto/card';
-import { Lane } from 'src/dto/lane';
+import { Lane } from 'src/modules/lane/dto/lane';
 import { LaneRepository } from './lane.repository';
 
 @Injectable()
@@ -11,7 +10,7 @@ export class LaneService {
     return this.laneRepository.getLanes();
   }
 
-  getCardsForLane(laneId: string): Promise<Card[]> {
+  getCardsForLane(laneId: string) {
     return this.laneRepository.getCardsForLane(laneId);
   }
 }

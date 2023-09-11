@@ -50,7 +50,11 @@ name: string,
 laneId: string
 description: string,
 priority: int,
-assignee: string
+user: {
+    id?: string
+    firstName?: string
+    lastName?: string
+}
 }
 
 PUT /api/cards/:id
@@ -60,7 +64,12 @@ name: string,
 laneId: string,
 description: string,
 priority: int,
-assignee: string
+userId: string;
+user: {
+  id?: string
+  firstName?: string
+  lastName?: string
+}
 }
 
 DELETE /api/cards/:id

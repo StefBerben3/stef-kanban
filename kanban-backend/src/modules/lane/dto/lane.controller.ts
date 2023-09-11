@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { ApiOkResponse } from '@nestjs/swagger';
-import { Card } from 'src/dto/card';
-import { Lane } from 'src/dto/lane';
+import { Card } from 'src/modules/card/dto/card';
+import { Lane } from 'src/modules/lane/dto/lane';
 import { LaneService } from './lane.service';
 
 @Controller()
@@ -22,7 +22,7 @@ export class LaneController {
     type: () => Card,
     isArray: true,
   })
-  getCardsForLane(@Param('id') laneId: string): Promise<Card[]> {
+  getCardsForLane(@Param('id') laneId: string) {
     return this.laneService.getCardsForLane(laneId);
   }
 }

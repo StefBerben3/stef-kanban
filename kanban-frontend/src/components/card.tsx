@@ -52,7 +52,7 @@ export default function KanbanCard({ card }: { card: Card }) {
         htmlFor="taskAssignee"
         className="block text-sm text-md font-medium text-gray-700"
       >
-        Task Assignee: {}
+        Task Assignee: {card.user?.name}
       </label>
       <Button buttonType="PRIMARY" onClick={() => openModal()}>
         Edit

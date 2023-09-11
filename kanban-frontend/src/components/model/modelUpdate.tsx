@@ -23,7 +23,6 @@ export default function KanbanModel({
     refetch();
   };
   const { refetch } = useLaneControllerGetCardsForLane(card.laneId);
-
   const [editedCard, setEditedCard] = useState<CardUpdate>(initialCard);
 
   return (

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { card } from '@prisma/client';
 import { PrismaService } from 'prisma/prisma.service';
-import { Lane } from 'src/dto/lane';
+import { Lane } from 'src/modules/lane/dto/lane';
 
 @Injectable()
 export class LaneRepository {
@@ -15,6 +15,9 @@ export class LaneRepository {
     return this.prisma.card.findMany({
       where: {
         laneId: laneId,
+      },
+      include: {
+        user: true,
       },
     });
   }
