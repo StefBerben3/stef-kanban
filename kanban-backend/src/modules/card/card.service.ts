@@ -1,13 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { CardUpdate } from 'src/modules/card/dto/card';
+import { UserService } from '../user/user.service';
 import { CardRepository } from './card.repository';
 
 @Injectable()
 export class CardService {
-  constructor(private readonly cardRepository: CardRepository) {}
+  constructor(
+    private readonly cardRepository: CardRepository,
+    private readonly userService: UserService,
+  ) {}
 
-  createCard(cardData: CardUpdate) {
-    return this.cardRepository.createCard(cardData);
+  async createCard(cardData: CardUpdate) {
+    const createdUser = await this.userService.createUser(cardData.user);
+    const userId = createdUser.id;
+
+    return this.cardRepository.createCard(cardData, userId);
   }
 
   async updateCard(id: string, updatedCard: CardUpdate) {

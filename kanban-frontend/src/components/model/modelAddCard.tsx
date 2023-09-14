@@ -4,7 +4,8 @@ import {
   useLaneControllerGetCardsForLane,
 } from "../../api/endpoints/kanban";
 
-import { CardUpdate, User } from "../../api/model";
+import axios from "axios";
+import { CardUpdate } from "../../api/model";
 import Button from "../button";
 import CardForm from "../cardForm";
 
@@ -12,11 +13,10 @@ export default function KanbanAddModel({
   laneId,
   isOpen,
   onClose,
-  user,
 }: {
   laneId: string;
   isOpen: boolean;
-  user: User;
+
   onClose: () => void;
 }) {
   const [card, setCard] = useState<CardUpdate>({
@@ -28,13 +28,21 @@ export default function KanbanAddModel({
   });
 
   const { refetch } = useLaneControllerGetCardsForLane(card.laneId);
-  const createCard = () => {
+  const createCard = async () => {
     try {
-      cardControllerCreateCard(card);
+      await cardControllerCreateCard(card);
       onClose();
-      refetch();
+      await refetch();
     } catch (e) {
-      window.alert("Error");
+      if (
+        axios.isAxiosError(e) &&
+        e.response &&
+        e.response.data &&
+        e.response.data.message &&
+        e.response.data.message.length > 0
+      ) {
+        window.alert(e.response.data.message[0]);
+      }
     }
   };
   return (

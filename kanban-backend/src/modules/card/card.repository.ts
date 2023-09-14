@@ -1,24 +1,34 @@
 import { Injectable } from '@nestjs/common';
-import { card } from '@prisma/client';
 import { PrismaService } from 'prisma/prisma.service';
 import { CardUpdate } from 'src/modules/card/dto/card';
+import { selectCard } from './select/createCardSelect';
 
 @Injectable()
 export class CardRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  createCard(cardData: CardUpdate): Promise<card> {
+  async createCard(cardData: CardUpdate, userId: string) {
     return this.prisma.card.create({
       data: {
-        laneId: cardData.laneId,
+        lane: {
+          connect: {
+            id: cardData.laneId,
+          },
+        },
         taskName: cardData.taskName,
         taskDescription: cardData.taskDescription,
         taskPriority: cardData.taskPriority,
+        user: {
+          connect: {
+            id: userId,
+          },
+        },
       },
+      ...selectCard,
     });
   }
 
-  updateCard(id: string, updatedCard: CardUpdate): Promise<card> {
+  updateCard(id: string, updatedCard: CardUpdate) {
     return this.prisma.card.update({
       where: { id: id },
       data: {
@@ -46,12 +56,14 @@ export class CardRepository {
                 },
               },
       },
+      ...selectCard,
     });
   }
 
-  deleteCard(id: string): Promise<card> {
+  deleteCard(id: string) {
     return this.prisma.card.delete({
       where: { id: id },
+      ...selectCard,
     });
   }
 }
