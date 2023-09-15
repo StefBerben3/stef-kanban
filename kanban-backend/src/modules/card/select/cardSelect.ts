@@ -1,4 +1,5 @@
 import { Prisma } from '@prisma/client';
+import { selectUser } from 'src/modules/user/select/userSelect';
 
 export const selectCard = Prisma.validator<Prisma.cardDefaultArgs>()({
   select: {
@@ -7,7 +8,7 @@ export const selectCard = Prisma.validator<Prisma.cardDefaultArgs>()({
     laneId: true,
     taskDescription: true,
     taskPriority: true,
-    user: true,
+    user: selectUser,
   },
 });
 

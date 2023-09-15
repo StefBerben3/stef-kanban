@@ -1,6 +1,6 @@
-import "react-toastify/dist/ReactToastify.css";
-import { CardUpdate } from "../api/model";
-import ListboxDropdown from "../components/listbox";
+import { CardUpdate, User } from "../api/model";
+import UserDropdown from "./UserDropdown";
+
 export default function CardForm({
   data,
   onChange,
@@ -11,7 +11,6 @@ export default function CardForm({
   return (
     <>
       <div className="mb-4">
-        {" "}
         <label htmlFor="taskName">Task Name </label>
         <input
           id="taskName"
@@ -57,7 +56,10 @@ export default function CardForm({
         />
       </div>
       <div className="mb-4">
-        <ListboxDropdown data={data} onChange={onChange} />
+        <UserDropdown
+          data={data.user}
+          onChange={(user: User) => onChange({ ...data, user })}
+        />
       </div>
     </>
   );

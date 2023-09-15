@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { CardUpdate } from 'src/modules/card/dto/card';
-import { selectCard } from './select/createCardSelect';
+import { selectCard } from './select/cardSelect';
 
 @Injectable()
 export class CardRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createCard(cardData: CardUpdate, userId: string) {
+  createCard(cardData: CardUpdate, userId: string) {
     return this.prisma.card.create({
       data: {
         lane: {

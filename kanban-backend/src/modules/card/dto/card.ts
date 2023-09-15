@@ -8,7 +8,7 @@ import {
   MinLength,
   ValidateNested,
 } from 'class-validator';
-import { SelectCard } from 'src/modules/card/select/createCardSelect';
+import { SelectCard } from 'src/modules/card/select/cardSelect';
 import { User } from '../../user/dto/user';
 
 export class CardUpdate {

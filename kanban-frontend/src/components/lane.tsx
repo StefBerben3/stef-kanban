@@ -4,9 +4,10 @@ import { Lane } from "../api/model";
 import Button from "./button";
 import { default as KanbanCard } from "./card";
 import KanbanAddModel from "./model/modelAddCard";
-export const MemoKanBanLane = memo(KanbanLane);
 
-export default function KanbanLane({ lane }: { lane: Lane }) {
+export const MemoKanBanLane = memo(Lanes);
+
+export default function Lanes({ lane }: { lane: Lane }) {
   const { data, refetch } = useLaneControllerGetCardsForLane(lane.id);
   const cards = useMemo(() => data ?? [], [data]);
 

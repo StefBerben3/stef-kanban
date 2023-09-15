@@ -5,7 +5,7 @@ import {
 } from "../api/endpoints/kanban";
 import { Card } from "../api/model";
 import Button from "./button";
-import KanbanModel from "./model/modelUpdate";
+import KanbanModel from "./model/modelUpdateCard";
 
 export default function KanbanCard({ card }: { card: Card }) {
   const { refetch } = useLaneControllerGetCardsForLane(card.laneId);

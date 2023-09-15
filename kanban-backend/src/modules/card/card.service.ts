@@ -11,10 +11,9 @@ export class CardService {
   ) {}
 
   async createCard(cardData: CardUpdate) {
-    const createdUser = await this.userService.createUser(cardData.user);
-    const userId = createdUser.id;
+    const user = await this.userService.createOrGetUser(cardData.user);
 
-    return this.cardRepository.createCard(cardData, userId);
+    return this.cardRepository.createCard(cardData, user.id);
   }
 
   async updateCard(id: string, updatedCard: CardUpdate) {

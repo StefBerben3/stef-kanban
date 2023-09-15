@@ -3,39 +3,33 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
 import { Fragment } from "react";
 import { useUsercontrollerGetUsers } from "../api/endpoints/kanban";
-import { CardUpdate } from "../api/model";
+import { User } from "../api/model";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ListboxDropdown({
+export default function UserDropdown({
   data,
   onChange,
 }: {
-  data: CardUpdate;
-  onChange: (card: CardUpdate) => void;
+  data: User;
+  onChange: (user: User) => void;
 }) {
   const { data: users } = useUsercontrollerGetUsers();
 
   return (
     <div className="mb-4">
       <Listbox
-        value={data.user}
+        value={data}
         onChange={(value) => {
           if (value && value.id) {
-            onChange({
-              ...data,
-              user: value,
-            });
+            onChange(value);
           } else {
             onChange({
-              ...data,
-              user: {
-                id: null,
-                name: "",
-                lastname: "",
-              },
+              id: null,
+              name: "",
+              lastname: "",
             });
           }
         }}
@@ -48,7 +42,7 @@ export default function ListboxDropdown({
             <div className="relative mt-2">
               <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 <span className="block truncate">
-                  {data.user && data.user.id ? data.user.name : "Create user"}
+                  {data && data.id ? data.name : "Create user"}
                 </span>
 
                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -133,7 +127,7 @@ export default function ListboxDropdown({
           </>
         )}
       </Listbox>
-      {data.user.id === null && (
+      {data.id === null && (
         <>
           <div className="mb-4 pt-4">
             <label htmlFor="name">Name</label>
@@ -141,15 +135,12 @@ export default function ListboxDropdown({
               id="name"
               className="mt-1 p-2 w-full border rounded-md"
               placeholder="Enter Name"
-              value={data.user?.name ?? ""}
+              value={data?.name ?? ""}
               onChange={(e) =>
                 onChange({
                   ...data,
-                  user: {
-                    ...data.user,
-                    id: null,
-                    name: e.target.value,
-                  },
+                  id: null,
+                  name: e.target.value,
                 })
               }
             />
@@ -160,15 +151,12 @@ export default function ListboxDropdown({
               id="lastname"
               className="mt-1 p-2 w-full border rounded-md"
               placeholder="Enter Lastname"
-              value={data.user?.lastname ?? ""}
+              value={data?.lastname ?? ""}
               onChange={(e) =>
                 onChange({
                   ...data,
-                  user: {
-                    ...data.user,
-                    id: null,
-                    lastname: e.target.value,
-                  },
+                  id: null,
+                  lastname: e.target.value,
                 })
               }
             />

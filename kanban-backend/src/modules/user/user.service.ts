@@ -6,8 +6,16 @@ import { UserRepository } from './user.repository';
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  createUser(userData: User): Promise<User> {
-    return this.userRepository.createUser(userData);
+  async createOrGetUser(userData: User): Promise<User> {
+    const existingUser = await this.userRepository.getUserById(
+      userData.id ?? '',
+    );
+
+    if (existingUser === null) {
+      return this.userRepository.createUser(userData);
+    }
+
+    return existingUser;
   }
 
   getUsers(): Promise<User[]> {

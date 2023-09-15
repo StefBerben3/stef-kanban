@@ -8,4 +8,4 @@ export const selectUser = Prisma.validator<Prisma.userDefaultArgs>()({
   },
 });
 
-export type SelectUser = Prisma.cardGetPayload<typeof selectUser>;
+export type SelectUser = Prisma.userGetPayload<typeof selectUser>;
