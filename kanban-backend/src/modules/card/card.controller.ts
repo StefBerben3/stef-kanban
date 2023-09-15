@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Param, Post, Put } from '@nestjs/common';
 import { ApiOkResponse } from '@nestjs/swagger';
-import { Card, CardUpdate } from 'src/dto/card';
+import { Card, CardUpdate } from 'src/modules/card/dto/card';
 import { CardService } from './card.service';
 
 @Controller()
@@ -14,7 +14,7 @@ export class CardController {
   createCard(
     @Body()
     cardData: CardUpdate,
-  ): Promise<Card> {
+  ) {
     return this.cardService.createCard(cardData);
   }
 
@@ -22,15 +22,12 @@ export class CardController {
   @ApiOkResponse({
     type: () => Card,
   })
-  updateCard(
-    @Param('id') id: string,
-    @Body() updatedCard: CardUpdate,
-  ): Promise<Card> {
+  updateCard(@Param('id') id: string, @Body() updatedCard: CardUpdate) {
     return this.cardService.updateCard(id, updatedCard);
   }
 
   @Delete('/api/cards/:id')
-  deleteCard(@Param('id') id: string): Promise<Card> {
+  deleteCard(@Param('id') id: string) {
     return this.cardService.deleteCard(id);
   }
 }

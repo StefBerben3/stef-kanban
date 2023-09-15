@@ -6,7 +6,8 @@
  * OpenAPI spec version: 1.0
  */
 
-export * from './card';
-export * from './cardUpdate';
-export * from './lane';
-export * from './user';
+export interface User {
+  id: string | null;
+  name: string | null;
+  lastname: string | null;
+}

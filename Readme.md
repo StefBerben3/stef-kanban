@@ -15,8 +15,15 @@
 - [x] Integratie met de api
 - [ ] Sockets
 
+- debounce -> input veranderd -> 100ms
+- prisma.io/docs/concepts/components/prisma-schema/relations#retrieve-a-record-and-include-related-records
+- https://docs.nestjs.com/openapi/types-and-parameters#circular-dependencies
+- https://github.com/frost-up/gtm-proxy/blob/master/front-end/components/user/list.vue#L195|
+- https://github.com/frost-up/gtm-proxy/blob/master/front-end/utils/debounce.ts
+- https://github.com/frost-up/gtm-proxy/blob/master/front-end/components/user/list.vue#L244
 
 ### Documentaties
+
 https://docs.nestjs.com/
 
 ```
@@ -43,7 +50,11 @@ name: string,
 laneId: string
 description: string,
 priority: int,
-assignee: string
+user: {
+    id?: string
+    firstName?: string
+    lastName?: string
+}
 }
 
 PUT /api/cards/:id
@@ -53,7 +64,12 @@ name: string,
 laneId: string,
 description: string,
 priority: int,
-assignee: string
+userId: string;
+user: {
+  id?: string
+  firstName?: string
+  lastName?: string
+}
 }
 
 DELETE /api/cards/:id

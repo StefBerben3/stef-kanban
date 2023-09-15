@@ -1,4 +1,5 @@
-import { CardUpdate } from "../api/model";
+import { CardUpdate, User } from "../api/model";
+import UserDropdown from "./UserDropdown";
 
 export default function CardForm({
   data,
@@ -10,14 +11,8 @@ export default function CardForm({
   return (
     <>
       <div className="mb-4">
-        <label
-          htmlFor="taskName"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Task Name
-        </label>
+        <label htmlFor="taskName">Task Name </label>
         <input
-          type="text"
           id="taskName"
           className="mt-1 p-2 w-full border rounded-md"
           placeholder="Enter task name"
@@ -61,19 +56,9 @@ export default function CardForm({
         />
       </div>
       <div className="mb-4">
-        <label
-          htmlFor="assignee"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Assignee
-        </label>
-        <input
-          type="text"
-          id="assignee"
-          className="mt-1 p-2 w-full border rounded-md"
-          placeholder="Enter assignee"
-          value={data.taskAssignee}
-          onChange={(e) => onChange({ ...data, taskAssignee: e.target.value })}
+        <UserDropdown
+          data={data.user}
+          onChange={(user: User) => onChange({ ...data, user })}
         />
       </div>
     </>

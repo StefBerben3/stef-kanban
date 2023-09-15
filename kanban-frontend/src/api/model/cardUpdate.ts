@@ -5,11 +5,12 @@
  * Een mooie beschrijving
  * OpenAPI spec version: 1.0
  */
+import type { User } from './user';
 
 export interface CardUpdate {
   taskName: string;
   laneId: string;
   taskDescription: string;
-  taskAssignee: string;
   taskPriority: number;
+  user: User;
 }

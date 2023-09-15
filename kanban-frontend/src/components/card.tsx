@@ -5,7 +5,7 @@ import {
 } from "../api/endpoints/kanban";
 import { Card } from "../api/model";
 import Button from "./button";
-import KanbanModel from "./model/modelUpdate";
+import KanbanModel from "./model/modelUpdateCard";
 
 export default function KanbanCard({ card }: { card: Card }) {
   const { refetch } = useLaneControllerGetCardsForLane(card.laneId);
@@ -52,10 +52,10 @@ export default function KanbanCard({ card }: { card: Card }) {
         htmlFor="taskAssignee"
         className="block text-sm text-md font-medium text-gray-700"
       >
-        Task Assignee: {card.taskAssignee}
+        Task Assignee: {card.user?.name}
       </label>
       <Button buttonType="PRIMARY" onClick={() => openModal()}>
-        Update
+        Edit
       </Button>
       <Button buttonType="DELETE" onClick={() => deleteCard()}>
         Delete
