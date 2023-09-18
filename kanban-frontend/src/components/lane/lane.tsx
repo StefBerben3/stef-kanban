@@ -1,13 +1,13 @@
 import { memo, useMemo, useState } from "react";
-import { useLaneControllerGetCardsForLane } from "../api/endpoints/kanban";
-import { Lane } from "../api/model";
-import Button from "./button";
-import { default as KanbanCard } from "./card";
-import KanbanAddModel from "./model/modelAddCard";
+import { useLaneControllerGetCardsForLane } from "../../api/endpoints/kanban";
+import { Lane as LaneDto } from "../../api/model";
+import { default as KanbanCard } from "../card/card";
+import AddModel from "../model/modelAddCard";
+import Button from "../ui/button";
 
-export const MemoKanBanLane = memo(Lanes);
+export const MemoKanBanLane = memo(Lane);
 
-export default function Lanes({ lane }: { lane: Lane }) {
+export default function Lane({ lane }: { lane: LaneDto }) {
   const { data, refetch } = useLaneControllerGetCardsForLane(lane.id);
   const cards = useMemo(() => data ?? [], [data]);
 
@@ -30,7 +30,7 @@ export default function Lanes({ lane }: { lane: Lane }) {
           <KanbanCard card={card} key={card.id} />
         ))}
         {isModalOpen && (
-          <KanbanAddModel
+          <AddModel
             laneId={lane.id}
             isOpen={isModalOpen}
             onClose={() => closeModal()}

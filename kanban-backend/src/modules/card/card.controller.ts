@@ -27,6 +27,9 @@ export class CardController {
   }
 
   @Delete('/api/cards/:id')
+  @ApiOkResponse({
+    type: () => Card,
+  })
   deleteCard(@Param('id') id: string) {
     return this.cardService.deleteCard(id);
   }

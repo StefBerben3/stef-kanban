@@ -4,10 +4,10 @@ import {
   useLaneControllerGetCardsForLane,
 } from "../../api/endpoints/kanban";
 import { Card, CardUpdate } from "../../api/model";
-import Button from "../button";
-import CardForm from "../cardForm";
+import CardForm from "../card/cardForm";
+import Button from "../ui/button";
 
-export default function KanbanModel({
+export default function ModelUpdateCard({
   card: initialCard,
   card,
   isOpen,
@@ -22,8 +22,15 @@ export default function KanbanModel({
     onClose();
     refetch();
   };
+
   const { refetch } = useLaneControllerGetCardsForLane(card.laneId);
-  const [editedCard, setEditedCard] = useState<CardUpdate>(initialCard);
+  const [editedCard, setEditedCard] = useState<CardUpdate>({
+    taskName: initialCard.taskName,
+    laneId: initialCard.laneId,
+    taskDescription: initialCard.taskDescription,
+    taskPriority: initialCard.taskPriority,
+    user: initialCard.user,
+  });
 
   return (
     <div
