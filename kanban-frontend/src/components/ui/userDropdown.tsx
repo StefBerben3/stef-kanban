@@ -2,8 +2,8 @@ import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
 import { Fragment } from "react";
-import { useUsercontrollerGetUsers } from "../api/endpoints/kanban";
-import { User } from "../api/model";
+import { useUsercontrollerGetUsers } from "../../api/endpoints/kanban";
+import { User } from "../../api/model";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");

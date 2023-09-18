@@ -1,9 +1,9 @@
 import { memo, useMemo, useState } from "react";
-import { useLaneControllerGetCardsForLane } from "../api/endpoints/kanban";
-import { Lane } from "../api/model";
-import Button from "./button";
-import { default as KanbanCard } from "./card";
-import KanbanAddModel from "./model/modelAddCard";
+import { useLaneControllerGetCardsForLane } from "../../api/endpoints/kanban";
+import { Lane } from "../../api/model";
+import { default as KanbanCard } from "../card/cards";
+import KanbanAddModel from "../model/modelAddCard";
+import Button from "../ui/button";
 
 export const MemoKanBanLane = memo(Lanes);
 

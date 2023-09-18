@@ -1,5 +1,5 @@
-import { CardUpdate, User } from "../api/model";
-import UserDropdown from "./UserDropdown";
+import { CardUpdate, User } from "../../api/model";
+import UserDropdown from "../ui/userDropdown";
 
 export default function CardForm({
   data,

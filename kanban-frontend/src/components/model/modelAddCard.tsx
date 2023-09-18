@@ -6,10 +6,10 @@ import {
 
 import axios from "axios";
 import { CardUpdate } from "../../api/model";
-import Button from "../button";
-import CardForm from "../cardForm";
+import CardForm from "../card/cardForm";
+import Button from "../ui/button";
 
-export default function KanbanAddModel({
+export default function ModelAddCard({
   laneId,
   isOpen,
   onClose,
