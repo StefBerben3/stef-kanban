@@ -19,9 +19,7 @@ export class LaneRepository {
       },
       include: {
         user: true,
-        lane: {
-          select: { ...selectLane.select },
-        },
+        lane: selectLane,
       },
     });
   }

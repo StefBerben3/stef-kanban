@@ -16,7 +16,6 @@ export default function ModelAddCard({
 }: {
   laneId: string;
   isOpen: boolean;
-
   onClose: () => void;
 }) {
   const [card, setCard] = useState<CardUpdate>({

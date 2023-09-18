@@ -12,17 +12,18 @@ export class CardService {
 
   async createCard(cardData: CardUpdate) {
     const user = await this.userService.createOrGetUser(cardData.user);
-
     return this.cardRepository.createCard(cardData, user.id);
   }
 
   async updateCard(id: string, updatedCard: CardUpdate) {
+    const user = await this.userService.createOrGetUser(updatedCard.user);
+
     updatedCard.taskPriority = parseInt(
       updatedCard.taskPriority as unknown as string,
       10,
     );
 
-    return await this.cardRepository.updateCard(id, updatedCard);
+    return await this.cardRepository.updateCard(id, updatedCard, user.id);
   }
 
   deleteCard(id: string) {

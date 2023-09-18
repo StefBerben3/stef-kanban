@@ -3,11 +3,11 @@ import {
   cardControllerDeleteCard,
   useLaneControllerGetCardsForLane,
 } from "../../api/endpoints/kanban";
-import { Card } from "../../api/model";
+import { Card as CardDto } from "../../api/model";
 import KanbanModel from "../model/modelUpdateCard";
 import Button from "../ui/button";
 
-export default function Cards({ card }: { card: Card }) {
+export default function Card({ card }: { card: CardDto }) {
   const { refetch } = useLaneControllerGetCardsForLane(card.laneId);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
