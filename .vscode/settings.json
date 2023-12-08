@@ -2,7 +2,7 @@
   "tailwindCSS.experimental.configFile": "kanban-frontend/tailwind.config.js",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true
+    "source.organizeImports": "explicit"
   },
   "typescript.suggest.paths": false,
   "javascript.suggest.paths": false,
