@@ -1,3 +1,5 @@
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
 import {
   cardControllerDeleteCard,
@@ -6,7 +8,6 @@ import {
 import { Card as CardDto } from "../../api/model";
 import KanbanModel from "../model/modelUpdateCard";
 import Button from "../ui/button";
-
 export default function Card({ card }: { card: CardDto }) {
   const { refetch } = useLaneControllerGetCardsForLane(card.laneId);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,13 +22,30 @@ export default function Card({ card }: { card: CardDto }) {
   const openModal = () => {
     setIsModalOpen(true);
   };
+
   const closeModal = () => {
     setIsModalOpen(false);
     refetch();
   };
+  const {
+    setNodeRef,
+    attributes,
+    listeners,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: card.id });
+
+  const style = { transition, transform: CSS.Transform.toString(transform) };
 
   return (
-    <div className="bg-gray-100 p-2 mb-2 rounded">
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="bg-gray-100 p-2 mb-2 rounded"
+    >
       <label
         htmlFor="taskName"
         className="block text-sm text-md font-semibold text-gray-700"
