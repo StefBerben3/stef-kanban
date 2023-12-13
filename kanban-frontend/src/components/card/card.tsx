@@ -1,3 +1,5 @@
+import { SortableContext, useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
 import {
   cardControllerDeleteCard,
@@ -21,24 +23,46 @@ export default function Card({ card }: { card: CardDto }) {
   const openModal = () => {
     setIsModalOpen(true);
   };
+
   const closeModal = () => {
     setIsModalOpen(false);
     refetch();
   };
 
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: card.id });
+
+  const style = {
+    transition,
+    transform: CSS.Transform.toString(transform),
+    cursor: isDragging ? "grabbing" : "grab",
+  };
+
   return (
-    <div className="bg-gray-100 p-2 mb-2 rounded">
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="bg-gray-100 p-2 mb-2 rounded"
+    >
       <label
         htmlFor="taskName"
         className="block text-sm text-md font-semibold text-gray-700"
       >
-        Task Name:{card.taskName}
+        Task Name: {card.taskName}
       </label>
       <label
         htmlFor="taskDescription"
         className="block text-sm text-md font-medium text-gray-700"
       >
-        Task Description:{card.taskDescription}
+        Task Description: {card.taskDescription}
       </label>
       <label
         htmlFor="taskDescription"
@@ -67,6 +91,26 @@ export default function Card({ card }: { card: CardDto }) {
           onClose={() => closeModal()}
         />
       )}
+    </div>
+  );
+}
+
+// Wrapper component to provide SortableContext
+export function DraggableCardList({ cards }: { cards: CardDto[] }) {
+  return (
+    <SortableContext items={cards.map((card) => card.id)}>
+      {cards.map((card) => (
+        <SortableCard key={card.id} card={card} />
+      ))}
+    </SortableContext>
+  );
+}
+
+// Sortable wrapper around Card component
+function SortableCard({ card }: { card: CardDto }) {
+  return (
+    <div>
+      <Card card={card} />
     </div>
   );
 }
