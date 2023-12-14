@@ -1,4 +1,4 @@
-import { SortableContext, useSortable } from "@dnd-kit/sortable";
+import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
 import {
@@ -91,26 +91,6 @@ export default function Card({ card }: { card: CardDto }) {
           onClose={() => closeModal()}
         />
       )}
-    </div>
-  );
-}
-
-// Wrapper component to provide SortableContext
-export function DraggableCardList({ cards }: { cards: CardDto[] }) {
-  return (
-    <SortableContext items={cards.map((card) => card.id)}>
-      {cards.map((card) => (
-        <SortableCard key={card.id} card={card} />
-      ))}
-    </SortableContext>
-  );
-}
-
-// Sortable wrapper around Card component
-function SortableCard({ card }: { card: CardDto }) {
-  return (
-    <div>
-      <Card card={card} />
     </div>
   );
 }
