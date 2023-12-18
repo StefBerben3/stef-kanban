@@ -17,10 +17,10 @@ export default function ModelUpdateCard({
   isOpen: boolean;
   onClose: () => void;
 }) {
-  const updateCard = () => {
-    cardControllerUpdateCard(initialCard.id, editedCard);
-    onClose();
+  const updateCard = async () => {
+    await cardControllerUpdateCard(initialCard.id, editedCard);
     refetch();
+    onClose();
   };
 
   const { refetch } = useLaneControllerGetCardsForLane(card.laneId);

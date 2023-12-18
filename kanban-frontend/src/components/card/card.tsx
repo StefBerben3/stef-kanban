@@ -30,24 +30,25 @@ export default function Card({ card }: { card: CardDto }) {
   };
 
   const {
+    setNodeRef,
     attributes,
     listeners,
-    setNodeRef,
     transform,
     transition,
     isDragging,
   } = useSortable({ id: card.id });
 
-  const style = {
-    transition,
-    transform: CSS.Transform.toString(transform),
-    cursor: isDragging ? "grabbing" : "grab",
-  };
-
   return (
     <div
       ref={setNodeRef}
-      style={style}
+      style={{
+        ...attributes,
+        transition: transition ?? "",
+        transform: CSS.Transform.toString(transform),
+        backgroundColor: isDragging ? "lightyellow" : "transparent",
+        border: isDragging ? "1px solid black" : "1px solid #ccc",
+        boxShadow: isDragging ? "0 4px 8px rgba(0, 0, 0, 0.2)" : "none",
+      }}
       {...attributes}
       {...listeners}
       className="bg-gray-100 p-2 mb-2 rounded"
@@ -56,13 +57,13 @@ export default function Card({ card }: { card: CardDto }) {
         htmlFor="taskName"
         className="block text-sm text-md font-semibold text-gray-700"
       >
-        Task Name: {card.taskName}
+        Task Name:{card.taskName}
       </label>
       <label
         htmlFor="taskDescription"
         className="block text-sm text-md font-medium text-gray-700"
       >
-        Task Description: {card.taskDescription}
+        Task Description:{card.taskDescription}
       </label>
       <label
         htmlFor="taskDescription"

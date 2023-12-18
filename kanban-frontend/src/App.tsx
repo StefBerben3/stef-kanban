@@ -3,8 +3,6 @@ import { useLaneControllerGetLanes } from "./api/endpoints/kanban";
 import "./app.css";
 import { MemoKanBanLane } from "./components/lane/lane";
 
-/*import KanbanLane from "./components/lane/lane";*/
-
 function App() {
   const { data } = useLaneControllerGetLanes();
   const lanes = useMemo(() => data ?? [], [data]);
