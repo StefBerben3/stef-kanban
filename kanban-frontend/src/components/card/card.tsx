@@ -71,7 +71,6 @@ export default function Card({ card }: { card: CardDto }) {
       >
         Task Priority: {card.taskPriority}
       </label>
-
       <label
         htmlFor="taskAssignee"
         className="block text-sm text-md font-medium text-gray-700"
@@ -84,7 +83,6 @@ export default function Card({ card }: { card: CardDto }) {
       <Button buttonType="DELETE" onClick={() => deleteCard()}>
         Delete
       </Button>
-
       {isModalOpen && (
         <KanbanModel
           card={card}
